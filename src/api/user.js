@@ -24,7 +24,7 @@ export function logout() {
   return request(
     {
       url: '/logout',
-      method: 'get',
+      method: 'post',
     }
   )
 }

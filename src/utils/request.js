@@ -14,18 +14,20 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // do something before request is sent
-
+    console.log("error1")
+    console.log(config);
     if (store.getters.token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-      config.headers['X-Token'] = getToken()
+      //config.headers['X-Token'] = getToken(),修改为token后退出成功，X-Token报错提示invalid cros request
+      config.headers['Token'] = getToken()
     }
     return config
   },
   error => {
     // do something with request error
-    console.log(error) // for debug
+    console.log('error2') // for debug
     return Promise.reject(error)
   }
 )

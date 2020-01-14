@@ -15,6 +15,19 @@ Vue.prototype.$http = axios;
 axios.defaults.baseURL = 'http://127.0.0.1:8081'
 Vue.use(ElementUI)
 
+router.beforeEach((to, from, next) => {
+  if(to.path === '/login'){
+    return next();
+  }
+
+  if (store.getters.token) { // 判断是否有token
+    next();//直接放行
+  } else {
+    next('/login');
+  }
+});
+
+
 
 new Vue({
   el: '#app',
